@@ -25,7 +25,6 @@ describe('public key', () => {
 			const key = await keyPromise;
 			const expected = await huge;
 			const enciphered = await collect(await key.public.encipher([expected]));
-			console.error('encipher complete');
 			const deciphered = await collect(await key.decipher([enciphered]));
 
 			assert.equal(deciphered.toString('hex'), expected.toString('hex'));
