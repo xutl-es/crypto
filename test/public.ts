@@ -8,6 +8,10 @@ describe('public key', () => {
 		const keyPromise = PrivateKey.createRSA(4096);
 		const data = random(256) as Promise<Buffer>;
 		const huge = random(8192) as Promise<Buffer>;
+		it('matches fingerprints', async () => {
+			const key = await keyPromise;
+			assert.equal(await key.fingerprint(), await key.public.fingerprint());
+		});
 		it('can private encrypt/decrypt', async () => {
 			const keyPromise = PrivateKey.createRSA(4096);
 			const key = await keyPromise;
@@ -39,6 +43,10 @@ describe('public key', () => {
 	describe('dsa', () => {
 		const keyPromise = PrivateKey.createDSA(1024);
 		const data = random(4096) as Promise<Buffer>;
+		it('matches fingerprints', async () => {
+			const key = await keyPromise;
+			assert.equal(await key.fingerprint(), await key.public.fingerprint());
+		});
 		it('can sign/verify', async () => {
 			const key = await keyPromise;
 			const signature = await key.sign(await data);

@@ -29,6 +29,9 @@ export class PrivateKey extends Key {
 		this.#public = new PublicKey(ACCESS, key);
 		return this.#public;
 	}
+	fingerprint() {
+		return this.public.fingerprint();
+	}
 	pem(
 		type: 'pkcs1' | 'pkcs8' | 'sec1' = 'pkcs8',
 		passcode?: string | Uint8Array,

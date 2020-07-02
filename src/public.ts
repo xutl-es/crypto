@@ -12,6 +12,13 @@ export class PublicKey extends Key {
 	get algorithm(): string | undefined {
 		return this.extract(ACCESS).asymmetricKeyType;
 	}
+	async fingerprint() {
+		const bits: string[] = [];
+		for (const byte of await hash(this.der(), 'sha1')) {
+			bits.push(byte.toString(16).toUpperCase());
+		}
+		return bits.join(':');
+	}
 	pem(type: 'pkcs1' | 'spki' = 'spki'): string {
 		return this.extract(ACCESS).export({ format: 'pem', type }) as string;
 	}
