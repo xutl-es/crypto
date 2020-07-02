@@ -1,4 +1,4 @@
-# @xutl/defer
+# @xutl/crypto
 
 One [eXtremely Useful Tool Library](https://xutl.es) to Simplfy working with crypto in node.
 
